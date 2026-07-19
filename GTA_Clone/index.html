@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Theft Auto VI Clone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: sans-serif;
+            background-color: #0d0d12;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Section 1 */
+        .section {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .hero-image {
+            width: 90%;
+            max-width: 1000px;
+            height: auto;
+            border: 2px solid #333;
+            margin-bottom: 20px;
+        }
+
+        .footer-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 1000px;
+            margin-top: 10px;
+        }
+
+        .pre-order-btn {
+            background-color: #fca5a5;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .platforms {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .logo-icon {
+            height: 20px;
+            width: auto;
+        }
+
+        .scroll-down {
+            text-align: center;
+            padding-bottom: 20px;
+            margin-top: auto;
+            display: block;
+        }
+
+        .scroll-down img {
+            width: 30px;
+            cursor: pointer;
+            filter: invert(70%) sepia(80%) saturate(1000%) hue-rotate(280deg) brightness(90%);
+        }
+
+        /* Wrapper */
+        .wrapper {
+            position: relative;
+        }
+
+        .section-2 {
+            height: 100vh;
+            background: url('assets/images/hero-bg.jpg') no-repeat center center / cover;
+        }
+
+        .spanning-image {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 70vh;
+            width: 95%;
+            max-width: 900px;
+            z-index: 5;
+            pointer-events: none;
+            border-radius: 20px;
+        }
+
+        /* Section 3 */
+        .section-3 {
+            padding-top: 350px;
+            display: flex;
+            justify-content: center;
+            padding-bottom: 100px;
+        }
+
+        .bonus-container {
+            width: 95%;
+            max-width: 1300px;
+            background: #1a1a24;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            height: 350px;
+        }
+
+        .bonus-img {
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bonus-text {
+            padding: 40px;
+        }
+
+        .bonus-text h2 {
+            color: #fdfd96;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .bonus-text p {
+            color: #a1a1aa;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .learn-more-btn {
+            padding: 12px 24px;
+            background: #fff;
+            color: #000;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        /* Section 4 */
+        .section-4 {
+            height: 100vh;
+            width: 100%;
+            background: url('assets/images/section-4-bg.jpg') no-repeat center center / cover;
+            display: flex;
+            align-items: flex-end;
+            padding: 80px;
+        }
+
+        .section-4 h1 {
+            color: #fca5a5;
+            font-size: 80px;
+            font-weight: bold;
+        }
+
+        /* Section 5 */
+        .section-5 {
+            width: 100%;
+            background-color: #0d0d12;
+            padding: 100px 0;
+        }
+
+        .content-wrapper-vertical {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .text-top {
+            width: 90%;
+            max-width: 1000px;
+            color: #fca5a5;
+            font-size: 22px;
+            line-height: 1.6;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .image-bottom {
+            width: 800px;
+            max-width: 90%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-bottom img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            display: block;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-overlay {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            color: white;
+            text-align: left;
+            max-width: 60%;
+        }
+
+        .video-overlay .label {
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            opacity: 0.8;
+        }
+
+        .video-overlay .title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .video-overlay .description {
+            font-size: 18px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .watch-now-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #fff;
+            color: #000;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Section 6 */
+        .section-6 {
+            width: 100%;
+            padding: 50px 20px;
+            background-color: #0d0d12;
+        }
+
+        .image-grid {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+
+        .grid-item {
+            position: relative;
+            width: 100%;
+            height: 400px;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            display: block;
+        }
+
+        .overlay-content {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            color: white;
+            text-align: left;
+            max-width: 60%;
+        }
+
+        .overlay-content .label {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+
+        .overlay-content .title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .overlay-content .description {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .btn-more {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #fca5a5;
+            color: black;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        .footer {
+            width: 100%;
+            padding: 80px 20px;
+            background-color: #0d0d12;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-logo {
+            margin-bottom: 40px;
+        }
+
+        .footer-logo img {
+            height: 80px;
+        }
+
+        .newsletter-box {
+            width: 100%;
+            max-width: 700px;
+            border: 1px solid #333;
+            padding: 20px 40px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .rockstar-logo-container img {
+            width: 60px;
+            height: auto;
+            display: block;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .social-icons a img {
+            height: 20px;
+            width: auto;
+            filter: invert(1);
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .social-icons a img:hover {
+            opacity: 1;
+        }
+
+        .legal-links {
+            color: #a1a1aa;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        .legal-links a {
+            color: #a1a1aa;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .esrb-rating {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 12px;
+            color: #a1a1aa;
+            margin-top: 20px;
+        }
+
+        .esrb-rating img {
+            height: 50px;
+        }
+
+        /* Menu */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(13, 13, 18, 0.95);
+            z-index: 1000;
+        }
+
+        .menu-content {
+            width: 400px;
+            height: 100%;
+            background: #1a1a24;
+            float: right;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 50px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+
+        .rockstar-logo {
+            height: 25px;
+            width: auto;
+        }
+
+        .close-btn {
+            cursor: pointer;
+            font-size: 24px;
+            border: none;
+            background: none;
+            color: white;
+        }
+
+        .menu-links a {
+            display: flex;
+            justify-content: space-between;
+            color: #a1a1aa;
+            font-size: 24px;
+            margin-bottom: 25px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .menu-links a:hover {
+            color: #fdfd96;
+        }
+
+        .menu-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            color: #a1a1aa;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="section">
+        <header class="navbar">
+            <div class="logo">VI</div>
+            <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        </header>
+        <main class="main-content">
+            <img src="assets/images/hero-image.jpg" alt="GTA VI" class="hero-image">
+            <div class="footer-info">
+                <div class="release-date">
+                    <p>COMING</p>
+                    <h3>NOVEMBER 19, 2026</h3>
+                </div>
+                <button class="pre-order-btn">Pre-Order Now</button>
+                <div class="platforms">
+                    <div class="platform-item"><img src="assets/images/ps5-logo.png" class="logo-icon"><span>PS5</span>
+                    </div>
+                    <div class="platform-item"><img src="assets/images/xbox-logo.png" class="logo-icon"><span>XBOX
+                            SERIES X|S</span></div>
+                </div>
+            </div>
+        </main>
+        <a href="#section2" class="scroll-down"><img src="assets/images/arrow-down.png"></a>
+    </section>
+
+    <div class="wrapper">
+        <section id="section2" class="section-2"></section>
+        <img src="assets/images/ultimate-grid.png" class="spanning-image">
+
+        <section id="section3" class="section-3">
+            <div class="bonus-container">
+                <img src="assets/images/vintage-pack.jpg" class="bonus-img">
+                <div class="bonus-text">
+                    <p>PRE-ORDER BONUSES</p>
+                    <h2>VINTAGE VICE CITY PACK</h2>
+                    <p>Pre-order to get unique benefits that flash back to when the neon burned brightest.</p>
+                    <a href="#" class="learn-more-btn">Learn More →</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="section4" class="section-4">
+            <h1>Vice City, USA.</h1>
+        </section>
+
+        <section id="section5" class="section-5">
+            <div class="content-wrapper-vertical">
+                <div class="text-top">
+                    <p>Jason and Lucia have always known the deck is stacked against them. But when an easy score goes
+                        wrong, they find themselves on the darkest side of the sunniest place in America, in the middle
+                        of a criminal conspiracy stretching across the state of Leonida — forced to rely on each other
+                        more than ever if they want to make it out alive.</p>
+                </div>
+                <div class="image-bottom">
+                    <img src="assets/images/jason-lucia.jpg" alt="GTA VI Trailer">
+                    <div class="video-overlay">
+                        <p class="label">VIDEOS</p>
+                        <h2 class="title">TRAILER 2</h2>
+                        <p class="description">The biggest, most immersive evolution of the Grand Theft Auto series yet.
+                        </p>
+                        <a href="#" class="watch-now-btn">▶ Watch Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section6" class="section-6">
+            <div class="image-grid">
+                <div class="grid-item">
+                    <img src="assets/images/image-1.jpg" alt="Only in Leonida">
+                    <div class="overlay-content">
+                        <p class="label">PEOPLE & PLACES</p>
+                        <h2 class="title">ONLY IN LEONIDA</h2>
+                        <p class="description">Vice City, USA. The darkest side of the sunniest place in America.</p>
+                        <a href="#" class="btn-more">Explore More →</a>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <img src="assets/images/image-2.jpg" alt="Media & Artwork">
+                    <div class="overlay-content">
+                        <p class="label">DOWNLOADS</p>
+                        <h2 class="title">MEDIA & ARTWORK</h2>
+                        <p class="description">Download and share official videos, screenshots, and more.</p>
+                        <a href="#" class="btn-more">See All →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="footer" class="footer">
+            <div class="footer-logo"><img src="assets/images/gta-vi-logo.png" alt="GTA VI Logo"></div>
+            <div class="newsletter-box">
+                <div class="rockstar-logo-container"><img src="assets/images/rockstar-logo.png" alt="R*"></div>
+                <div>
+                    <h3>GET ROCKSTAR PROPAGANDA</h3>
+                    <p>Get the latest game announcements, updates on special events and offers from Rockstar Games.</p>
+                </div>
+            </div>
+            <div class="social-icons">
+                <a href="#"><img src="assets/images/icon-x.png" alt="X"></a>
+                <a href="#"><img src="assets/images/icon-instagram.png" alt="Instagram"></a>
+                <a href="#"><img src="assets/images/icon-youtube.png" alt="YouTube"></a>
+                <a href="#"><img src="assets/images/icon-tiktok.png" alt="TikTok"></a>
+                <a href="#"><img src="assets/images/icon-facebook.png" alt="Facebook"></a>
+                <a href="#"><img src="assets/images/icon-twitch.png" alt="Twitch"></a>
+                <a href="#"><img src="assets/images/icon-discord.png" alt="Discord"></a>
+            </div>
+            <nav class="legal-links">
+                <a href="#">Corporate</a> | <a href="#">Privacy</a> | <a href="#">Cookie Settings</a> | <a
+                    href="#">Cookie Policy</a> | <a href="#">Legal</a>
+            </nav>
+            <div class="esrb-rating">
+                <img src="assets/images/esrb-rp.png" alt="ESRB Rating">
+                <p>May contain content inappropriate for children.<br>Visit esrb.org for rating information.</p>
+            </div>
+        </section>
+    </div>
+
+    <div id="overlay-menu" class="overlay">
+        <div class="menu-content">
+            <div class="menu-header">
+                <div class="header-left">
+                    <img src="assets/images/rockstar-logo.png" class="rockstar-logo">
+                    <span>Grand Theft Auto VI</span>
+                </div>
+                <button class="close-btn" onclick="toggleMenu()">✕</button>
+            </div>
+            <nav class="menu-links">
+                <a href="#">HOME</a>
+                <a href="#">ULTIMATE EDITION</a>
+                <a href="#">ONLY IN LEONIDA <span>></span></a>
+                <a href="#">TRAILERS <span>></span></a>
+                <a href="#">MEDIA <span>></span></a>
+            </nav>
+            <div class="menu-footer"><span>🌐 English ˄</span><span>⚙ Motion ˄</span></div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('overlay-menu');
+            menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+        }
+    </script>
+</body>
+
+</html>
